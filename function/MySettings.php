@@ -5,33 +5,20 @@ if(isset($_POST['submit'])){
 	$FormData = array(
     'fname' => htmlentities(mysqli_real_escape_string($connect,$_POST['fname'])),
     'lname' => htmlentities(mysqli_real_escape_string($connect,$_POST['lname'])),
-    'phone' => htmlentities(mysqli_real_escape_string($connect,$_POST['phone'])),
-    'company' => htmlentities(mysqli_real_escape_string($connect,$_POST['company'])),
-    'address' => htmlentities(mysqli_real_escape_string($connect,$_POST['address'])),
-    'country' => htmlentities(mysqli_real_escape_string($connect,$_POST['country'])),
-    'city' => htmlentities(mysqli_real_escape_string($connect,$_POST['city'])),
-    'postal' => htmlentities(mysqli_real_escape_string($connect,$_POST['postal'])),
-    'state' => htmlentities(mysqli_real_escape_string($connect,$_POST['state'])),
     'key' => $ClientInfo['hosting_client_key']
 	);
-	$sql = mysqli_query($connect,"UPDATE `hosting_clients` SET `hosting_client_fname`='".$FormData['fname']."',`hosting_client_lname`='".$FormData['lname']."',`hosting_client_phone`='".$FormData['phone']."',`hosting_client_address`='".$FormData['address']."',`hosting_client_country`='".$FormData['country']."',`hosting_client_city`='".$FormData['city']."',`hosting_client_pcode`='".$FormData['postal']."',`hosting_client_state`='".$FormData['state']."',`hosting_client_company`='".$FormData['company']."' WHERE `hosting_client_key`='".$FormData['key']."'");
-	if($sql){
-		$_SESSION['message'] = '<div class="alert alert-success" role="alert">
-									  <button class="close" data-dismiss="alert" type="button" aria-label="Close">
-									    <span aria-hidden="true">&times;</span>
-									  </button>
-									  Profile updated <b>successfully!</b>
-									</div>';
-		header('location: ../mysettings.php');
+	$sql = "UPDATE `hosting_clients` SET `hosting_client_fname`= ?,`hosting_client_lname`= ? WHERE `hosting_client_key`= ?";
+	$stmt = $connect->prepare($sql);
+	$stmt->bind_param("sss", $FormData['fname'], $FormData['lname'], $FormData['key']);
+	$trigger = $stmt->execute();
+	$stmt->close();
+	if($trigger !== false){
+		$_SESSION['message'] = '<div class="alert alert-success" role="alert"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <circle cx="12" cy="12" r="9"></circle> <path d="M9 12l2 2l4 -4"></path></svg>&nbsp;The new profile settings have been updated successfully!</div>';
+		header('location: ../userProfile');
 	}
 	else{
-		$_SESSION['message'] = '<div class="alert alert-danger" role="alert">
-									  <button class="close" data-dismiss="alert" type="button" aria-label="Close">
-									    <span aria-hidden="true">&times;</span>
-									  </button>
-									  Something went'."'".'s <b>wrong!</b>
-									</div>';
-		header('location: ../mysettings.php');
+		$_SESSION['message'] = '<div class="alert alert-danger"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-x alert-icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"> <path stroke="none" d="M0 0h24v24H0z" fill="none"></path> <circle cx="12" cy="12" r="9"></circle> <path d="M10 10l4 4m0 -4l-4 4"></path></svg>&nbsp;Yikes, something is going the wrong way. Please contact support. Error: '.$stmt->error.'</div>';
+		header('location: ../userProfile');
 	}
 }
 else{
