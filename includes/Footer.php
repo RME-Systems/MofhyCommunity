@@ -1,13 +1,29 @@
-      </div>
+
+<footer class="footer footer-transparent d-print-none">
+    <div class="container">
+        <div class="row text-center align-items-center flex-row-reverse">
+            <div class="col-lg-auto ms-lg-auto">
+                <ul class="list-inline list-inline-dots mb-0">
+                    <li class="list-inline-item">
+                        Powered By
+                        <a href="https://mofhy.tk/" target="_blank" rel="dofollow">
+                            Mofhy Community
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-auto mt-3 mt-lg-0">
+                <ul class="list-inline list-inline-dots mb-0">
+                    <li class="list-inline-item">
+                        Copyright © 2021 - 2022 Mofhy Lite.
+                        All Rights Reserved.
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div id="hidden-area">
-    	<?php 
-    		if(isset($_SESSION['message'])){
-    			echo($_SESSION['message']);
-    			unset($_SESSION['message']);
-    		}
-    	?>
-    </div>
-    <script src="assets/js/halfmoon.min.js"></script>
-  </body>
+</footer>
+</div>
+<script src="https://assets.mofhy.tk/js/tabler.min.js"></script>
+</body>
 </html>
