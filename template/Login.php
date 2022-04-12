@@ -29,11 +29,11 @@
 						<div class="input-group input-group-flat">
 							<input type="password" name="password" class="form-control" placeholder="Password" required>
 						</div>
-						<div class="form-footer">
+						<div class="mt-3">
 							<button type="submit" class="btn btn-primary col-12" name="login" type="submit">Sign In</button>
 						</div>
 					</div>
-					<div class="text-center text-muted">
+					<div class="text-center text-muted mt-2">
 						Are you new here? Just <a href="/signup" tabindex="-1">Sign Up</a>!
 					</div>
 				</div>
