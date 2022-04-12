@@ -4,24 +4,24 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<h1 class="navbar-brand d-none-navbar-horizontal pe-0 pe-md-3" style="filter: brightness(0) invert(1);">
-			<a href="http://localhost/admin">
+			<a href=".">
 				<img src="https://assets.mofhy.tk/img/logo.svg" width="240" height="40" alt="MofhyLite" class="navbar-brand-image">
 			</a>
 		</h1>
 		<div class="navbar-nav flex-row order-md-last">
 			<div class="nav-item dropdown">
 				<a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-					<span class="avatar avatar-sm rounded-1" style="background-image: url(https://www.gravatar.com/avatar/7ed7d82a140afe29bfee55bbdbd113e1?s=80&amp;d=mp&amp;r=g)"></span>
+					<span class="avatar avatar-sm rounded-1" style="background-image: url(<?php echo get_gravatar($ClientInfo['hosting_client_email'])?>)"></span>
 					<div class="d-none d-xl-block ps-2">
-						<div>Jaiss Krishnas</div>
-						<div class="mt-1 small text-muted">jaikt.dev@gmail.com</div>
+						<div><?php echo $ClientInfo['hosting_client_fname']." ".$ClientInfo['hosting_client_lname']; ?></div>
+						<div class="mt-1 small text-muted"><?php echo $ClientInfo['hosting_client_email']; ?></div>
 					</div>
 				</a>
 				<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-					<a class="dropdown-item" href="http://localhost/admin/profile">
+					<a class="dropdown-item" href="profile">
 						Profile
 					</a>
-					<a class="dropdown-item" href="http://localhost/admin/logout">
+					<a class="dropdown-item" href="logout">
 						Sign Out
 					</a>
 				</div>
@@ -35,7 +35,7 @@
 			<div class="container-xl">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a href="http://localhost/admin" class="nav-link">
+						<a href="." class="nav-link">
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
 								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -64,7 +64,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="http://localhost/admin/accounts" class="nav-link">
+						<a href="accounts" class="nav-link">
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
 								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-server" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -80,7 +80,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="http://localhost/admin/sslCertificates" class="nav-link ">
+						<a href="sslCertificates" class="nav-link ">
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
 								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shield-lock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -95,35 +95,34 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="http://localhost/admin/apiSettings" class="nav-link ">
+						<a href="tools" class="nav-link ">
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-api-app" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-									<path d="M12 15h-6.5a2.5 2.5 0 1 1 0 -5h.5"></path>
-									<path d="M15 12v6.5a2.5 2.5 0 1 1 -5 0v-.5"></path>
-									<path d="M12 9h6.5a2.5 2.5 0 1 1 0 5h-.5"></path>
-									<path d="M9 12v-6.5a2.5 2.5 0 0 1 5 0v.5"></path>
+									<path d="M3 21h4l13 -13a1.5 1.5 0 0 0 -4 -4l-13 13v4"></path>
+									<line x1="14.5" y1="5.5" x2="18.5" y2="9.5"></line>
+									<polyline points="12 8 7 3 3 7 8 12"></polyline>
+									<line x1="7" y1="8" x2="5.5" y2="9.5"></line>
+									<polyline points="16 12 21 17 17 21 12 16"></polyline>
+									<line x1="16" y1="17" x2="14.5" y2="18.5"></line>
 								</svg>
 							</span>
 							<span class="nav-link-title">
-								API Credentials
+								Extra Tools
 							</span>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="http://localhost/admin/extensions" class="nav-link ">
+						<a href="domainChecker" class="nav-link ">
 							<span class="nav-link-icon d-md-none d-lg-inline-block">
-								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-subtask" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+								<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
 									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-									<line x1="6" y1="9" x2="12" y2="9"></line>
-									<line x1="4" y1="5" x2="8" y2="5"></line>
-									<path d="M6 5v11a1 1 0 0 0 1 1h5"></path>
-									<rect x="12" y="7" width="8" height="4" rx="1"></rect>
-									<rect x="12" y="15" width="8" height="4" rx="1"></rect>
+									<circle cx="12" cy="12" r="9"></circle>
+									<path d="M9 12l2 2l4 -4"></path>
 								</svg>
 							</span>
 							<span class="nav-link-title">
-								Extensions
+								Domain Checker
 							</span>
 						</a>
 					</li>
